@@ -23,6 +23,14 @@ public class ProductController : ControllerBase
         _productService = productService;
     }
 
+    /// <summary>
+    /// Cria uma lista de produtos atrelados a um pedido.
+    /// </summary>
+    /// <param name="createProductListRequest"></param>
+    /// <response code="200">Produtos criados com sucesso.</response>
+    /// <response code="400">Requisição inválida.</response>
+    /// <response code="500">Erro interno do servidor.</response>
+    /// <returns></returns>
     [HttpPost]
     public IActionResult Post([FromBody] CreateProductListRequest createProductListRequest)
     {
@@ -31,6 +39,14 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
+    /// <summary>
+    /// Deleta uma lista de produtos atrelados a um pedido.
+    /// </summary>
+    /// <param name="removeProductRequest"></param>
+    /// <response code="200">Produto deletado com sucesso.</response>
+    /// <response code="400">Requisição inválida.</response>
+    /// <response code="500">Erro interno do servidor.</response>
+    /// <returns></returns>
     [HttpDelete]
     public IActionResult Delete([FromBody] RemoveProductRequest removeProductRequest)
     {

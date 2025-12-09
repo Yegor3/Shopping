@@ -23,7 +23,14 @@ public class OrderController : ControllerBase
         _mapper = new OrderMapper();
         _orderService = orderService;
     }
-
+    /// <summary>
+    /// Crie um novo pedido.
+    /// </summary>
+    /// <param name="createOrderRequest"></param>
+    /// <response code="200">Pedido criado com sucesso.</response>
+    /// <response code="400">Requisição inválida.</response>
+    /// <response code="500">Erro interno do servidor.</response>
+    /// <returns></returns>
     [HttpPost]
     public IActionResult Post([FromBody] CreateOrderRequest createOrderRequest)
     {
@@ -32,6 +39,14 @@ public class OrderController : ControllerBase
         return Ok(createOrderResult);
     }
 
+    /// <summary>
+    /// Feche um pedido criado anteriormente.
+    /// </summary>
+    /// <param name="updateOrderRequest"></param>
+    /// <response code="200">Pedido fechado com sucesso.</response>
+    /// <response code="400">Requisição inválida.</response>
+    /// <response code="500">Erro interno do servidor.</response>
+    /// <returns></returns>
     [HttpPut("Close")]
     public IActionResult Close([FromQuery] CloseOrderRequest updateOrderRequest)
     {
@@ -40,6 +55,14 @@ public class OrderController : ControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Liste os pedidos existentes na plataforma.
+    /// </summary>
+    /// <param name="getOrderListRequest"></param>
+    /// <response code="200">Listagem efetuada com sucesso.</response>
+    /// <response code="400">Requisição inválida.</response>
+    /// <response code="500">Erro interno do servidor.</response>
+    /// <returns></returns>
     [HttpGet("List")]
     public async Task<IActionResult> GetList([FromQuery] GetOrderListRequest getOrderListRequest)
     {
@@ -48,6 +71,14 @@ public class OrderController : ControllerBase
         return Ok(getOrderListResult);
     }
 
+    /// <summary>
+    /// Busque os detalhes de um pedido, incluindo seus produtos.
+    /// </summary>
+    /// <param name="getOrderDetailsRequest"></param>
+    /// <response code="200">Detalhamento efetuado com sucesso.</response>
+    /// <response code="400">Requisição inválida.</response>
+    /// <response code="500">Erro interno do servidor.</response>
+    /// <returns></returns>
     [HttpGet("DetailsById")]
     public IActionResult GetById([FromQuery] GetOrderDetailsRequest getOrderDetailsRequest)
     {
