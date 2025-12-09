@@ -12,8 +12,9 @@ A tabela Order se refere aos registros de pedidos da plataforma. A chave primár
 <img width="912" height="562" alt="image" src="https://github.com/user-attachments/assets/ba958e83-138f-4b8f-9074-bbb9238e2031" />
 <img width="499" height="553" alt="image" src="https://github.com/user-attachments/assets/069cf23e-5aa5-40b0-9342-9c04af27c549" />
 
-A tabela Product se refere aos registros de produtos da plataforma. A chave primária também funciona de forma exclusiva e auto-incremental.
+A tabela Product se refere aos registros de produtos da plataforma. A chave primária também funciona de forma exclusiva e auto-incremental. Aqui, é importante salientar a utilização do campo OrderId como uma chave estrangeira para a coluna Id da tabela Order.
 <img width="904" height="564" alt="image" src="https://github.com/user-attachments/assets/a596b41d-fdd8-4a75-90e4-1a3ef90c1b3f" />
+<img width="906" height="560" alt="image" src="https://github.com/user-attachments/assets/3d4f6502-0ab9-488f-bea2-f10bc4263f75" />
 <img width="506" height="561" alt="image" src="https://github.com/user-attachments/assets/2958ef4f-40c5-4ab3-a1f5-fcc3b47e0b45" />
 
 Por fim, existe uma função na base de dados que é utilizada no endpoint de listagem de pedidos. O script da procedure existe conforme abaixo:
