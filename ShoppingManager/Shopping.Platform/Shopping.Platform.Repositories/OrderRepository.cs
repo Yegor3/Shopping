@@ -32,7 +32,7 @@ namespace Shopping.Platform.Repositories
 
         public Order? Get (long orderId)
         {
-            var order = _context.Order.FirstOrDefault(o => o.Id == orderId);
+            var order = _context.Order.FirstOrDefault(o => o.Id == orderId && o.DeletionDate == null);
             return order;
         }
 

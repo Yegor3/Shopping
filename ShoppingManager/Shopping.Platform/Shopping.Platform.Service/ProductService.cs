@@ -22,7 +22,7 @@ namespace Shopping.Platform.Service
         {
             Order? order = _orderRepository.Get(request.OrderId);
 
-            if (order == null || order.Status == OrderStatus.Closed || order.DeletionDate != null)
+            if (order == null || order.Status == OrderStatus.Closed)
                 throw new Exception("Order could not be accessed");
 
             CreateProductListResult result = new CreateProductListResult();
@@ -50,7 +50,7 @@ namespace Shopping.Platform.Service
         {
             Order? order = _orderRepository.Get(request.OrderId);
 
-            if (order == null || order.Status == OrderStatus.Closed || order.DeletionDate != null)
+            if (order == null || order.Status == OrderStatus.Closed)
                 throw new Exception("Order could not be accessed");
 
             if(request.ProductIds != null)

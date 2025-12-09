@@ -24,7 +24,7 @@ namespace Shopping.Platform.Repositories
 
         public Product? GetFirstByOrderId (long orderId)
         {
-            Product? product = _context.Product.FirstOrDefault(o => o.OrderId == orderId);
+            Product? product = _context.Product.FirstOrDefault(p => p.OrderId == orderId && p.DeletionDate == null);
             return product;
         }
 

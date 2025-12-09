@@ -39,12 +39,12 @@ namespace Shopping.Platform.Service
         public void CloseOrder(CloseOrderRequest request)
         {
             Order? order = _orderRepository.Get(request.OrderId);
-            if (order == null)
+            if (order == null || order.Status == OrderStatus.Closed)
                 throw new Exception("Order not found");
 
             Product? product = _productRepository.GetFirstByOrderId(request.OrderId);
             if (product == null)
-                throw new Exception("Order not found");
+                throw new Exception("Order does not have any products");
 
             _orderRepository.Close(order);
         }
