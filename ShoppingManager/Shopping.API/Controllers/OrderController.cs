@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Shopping.Api.Models.Results;
+using Shopping.API.Models.Response;
 using Shopping.API.Mapping;
 using Shopping.API.Models.Requests;
 using Shopping.Platform.Service.Interfaces;
 using ServiceRequestModel = Shopping.Platform.Service.Models.Requests;
 using ServiceResultModel = Shopping.Platform.Service.Models.Results;
+using Shopping.API.Entities;
 
 namespace Shopping.API.Controllers;
 
@@ -23,6 +24,7 @@ public class OrderController : ControllerBase
         _mapper = new OrderMapper();
         _orderService = orderService;
     }
+
     /// <summary>
     /// Crie um novo pedido.
     /// </summary>
@@ -36,7 +38,10 @@ public class OrderController : ControllerBase
     {
         ServiceRequestModel.CreateOrderRequest serviceRequest = _mapper.Map(createOrderRequest);
         ServiceResultModel.CreateOrderResult createOrderResult = _orderService.CreateOrder(serviceRequest);
-        return Ok(createOrderResult);
+        return Ok( new ResponseWrapper<ServiceResultModel.CreateOrderResult>(
+            data: createOrderResult,
+            message: ApiMessages.OrderCreationSuccess
+        ));
     }
 
     /// <summary>
@@ -52,7 +57,7 @@ public class OrderController : ControllerBase
     {
         ServiceRequestModel.CloseOrderRequest serviceRequest= _mapper.Map(updateOrderRequest);
         _orderService.CloseOrder(serviceRequest);
-        return Ok();
+        return Ok(ApiMessages.OrderClosedSuccess);
     }
 
     /// <summary>
@@ -68,7 +73,10 @@ public class OrderController : ControllerBase
     {
         ServiceRequestModel.GetOrderListRequest serviceRequest= _mapper.Map(getOrderListRequest);
         ServiceResultModel.GetOrderListResult getOrderListResult = await _orderService.GetOrderList(serviceRequest);
-        return Ok(getOrderListResult);
+        return Ok( new ResponseWrapper<ServiceResultModel.GetOrderListResult>(
+            data: getOrderListResult,
+            message: ApiMessages.OrderListSuccess
+        ));
     }
 
     /// <summary>
@@ -84,6 +92,9 @@ public class OrderController : ControllerBase
     {
         ServiceRequestModel.GetOrderDetailsRequest serviceRequest= _mapper.Map(getOrderDetailsRequest);
         ServiceResultModel.GetOrderDetailsResult getOrderDetailsResult = _orderService.GetOrderDetails(serviceRequest);
-        return Ok(getOrderDetailsResult);
+        return Ok( new ResponseWrapper<ServiceResultModel.GetOrderDetailsResult>(
+            data: getOrderDetailsResult,
+            message: ApiMessages.OrderDetailsSuccess
+        ));
     }
 }

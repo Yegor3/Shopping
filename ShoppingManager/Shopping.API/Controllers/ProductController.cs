@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Shopping.API.Entities;
 using Shopping.API.Mapping;
 using Shopping.API.Models.Requests;
+using Shopping.API.Models.Response;
 using Shopping.Platform.Service.Interfaces;
 using Shopping.Platform.Service.Models.Results;
 using ServiceRequestModel = Shopping.Platform.Service.Models.Requests;
-using ServiceResultModel = Shopping.Platform.Service.Models.Results;
 
 namespace Shopping.API.Controllers;
 
@@ -36,7 +37,10 @@ public class ProductController : ControllerBase
     {
         ServiceRequestModel.CreateProductListRequest serviceRequest= _mapper.Map(createProductListRequest);
         CreateProductListResult result = _productService.CreateProductList(serviceRequest);
-        return Ok(result);
+        return Ok( new ResponseWrapper<CreateProductListResult>(
+            data: result,
+            message: ApiMessages.ProductCreationSuccess
+        ));
     }
 
     /// <summary>
@@ -52,6 +56,6 @@ public class ProductController : ControllerBase
     {
         ServiceRequestModel.RemoveProductRequest serviceRequest= _mapper.Map(removeProductRequest);
         _productService.RemoveProductList(serviceRequest);
-        return Ok();
+        return Ok(ApiMessages.ProductDeletionSuccess);
     }
 }

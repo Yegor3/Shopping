@@ -1,4 +1,4 @@
-using Shopping.Api.Models.Results;
+using Shopping.API.Models.Response;
 using Shopping.API.Models.Requests;
 using ServiceRequestModel = Shopping.Platform.Service.Models.Requests;
 using ServiceResultModel = Shopping.Platform.Service.Models.Results;
@@ -13,14 +13,6 @@ namespace Shopping.API.Mapping
             {
                 IsGift = request.IsGift,
                 Description = request.Description
-            };
-        }
-
-        public ServiceResultModel.CreateOrderResult Map(CreateOrderResult request)
-        {
-            return new ServiceResultModel.CreateOrderResult
-            {
-                OrderId = request.OrderId
             };
         }
 

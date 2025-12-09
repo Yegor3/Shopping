@@ -1,4 +1,3 @@
-using Shopping.Api.Models.Results;
 using Shopping.API.Models.Requests;
 using ServiceRequestModel = Shopping.Platform.Service.Models.Requests;
 using ServiceResultModel = Shopping.Platform.Service.Models.Results;
