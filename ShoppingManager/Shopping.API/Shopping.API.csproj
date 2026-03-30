@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shopping.Platform\Shopping.Platform.Common\Shopping.Platform.Common.csproj" />
+    <ProjectReference Include="..\Shopping.Platform\Shopping.Domain\Shopping.Domain.csproj" />
     <ProjectReference Include="..\Shopping.Platform\Shopping.Platform.Repositories\Shopping.Platform.Repositories.csproj" />
     <ProjectReference Include="..\Shopping.Platform\Shopping.Platform.Service\Shopping.Platform.Service.csproj" />
   </ItemGroup>
